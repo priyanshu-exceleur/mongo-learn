@@ -24,7 +24,7 @@ const getAllProducts = async (req, res) => {
 
 const getProduct = async (req, res) => {
     try {
-        const proName = req.params.
+        const proName = req.params
         console.log(proName)
         const specificPro = await Product.findOne(proName)
         res.json(specificPro)

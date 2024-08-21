@@ -4,7 +4,7 @@ const pro_con = require("../controller/product")
 
 routes.post("/", pro_con.createProducts)
 routes.get("/", pro_con.getAllProducts)
-routes.get("/:title", pro_con.getProduct)
+routes.get("/user", pro_con.getProduct)
 
 module.exports = routes;
 

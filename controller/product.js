@@ -4,7 +4,11 @@ const createProducts = async (req, res) => {
     try {
         const creatingProduct = new Product(req.body);
         const newCreatePro = await creatingProduct.save();
-        res.status(201).json(newCreatePro)
+        res.status(201).json({
+            status: 201,
+            msg: "Product created",
+            data: newCreatePro
+        })
         console.log(newCreatePro);
     } catch (error) {
         res.status(500).json({ message: "Error creating product", error: error.message });

@@ -1,5 +1,5 @@
 const Product = require("../model/product");
-
+const mongoose = require("mongoose")
 const createProducts = async (req, res) => {
     try {
         const creatingProduct = new Product(req.body);
@@ -39,8 +39,23 @@ const getProduct = async (req, res) => {
     }
 }
 
+const deleteProduct = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const deletedProduct = await Product.findOneAndDelete({ _id: id });
+        res.status(200).json({
+            data: deletedProduct,
+            msg: "Delete Items Successfully"
+        })
+    } catch (error) {
+        res.json("Got internal Error while Delete Data")
+    }
+
+}
+
 module.exports = {
     createProducts,
     getAllProducts,
-    getProduct
+    getProduct,
+    deleteProduct
 };

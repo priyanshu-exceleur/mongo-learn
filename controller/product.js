@@ -53,11 +53,22 @@ const deleteProduct = async (req, res) => {
 
 }
 
-
 const deleteAllProduct = async (req, res) => {
     try {
         const deleteAll = await Product.deleteMany({})
         res.status(200).json("Delete All Product Successfully")
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const updateProduct = async (req, res) => {
+    try {
+        const { title } = req.body
+        const id = req.params.id
+        const UpdateProduct = await Product.findOneAndUpdate({ _id: id }, { title })
+        console.log("UpdateProduct", UpdateProduct)
+        res.status(200).json("Update Data")
     } catch (error) {
         console.log(error)
     }
@@ -68,5 +79,6 @@ module.exports = {
     getAllProducts,
     getProduct,
     deleteProduct,
-    deleteAllProduct
+    deleteAllProduct,
+    updateProduct
 };

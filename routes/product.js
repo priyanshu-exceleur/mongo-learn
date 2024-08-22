@@ -6,6 +6,7 @@ routes.post("/", pro_con.createProducts)
 routes.get("/", pro_con.getAllProducts)
 routes.get("/user", pro_con.getProduct)
 routes.delete("/user/:id", pro_con.deleteProduct)
+routes.delete("/deleteAll", pro_con.deleteAllProduct)
 
 module.exports = routes;
 

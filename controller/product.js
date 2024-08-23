@@ -66,9 +66,9 @@ const updateProduct = async (req, res) => {
     try {
         const { title } = req.body
         const id = req.params.id
-        const UpdateProduct = await Product.findOneAndUpdate({ _id: id }, { title })
+        const UpdateProduct = await Product.findOneAndUpdate({ _id: id }, { title }, { new: true })
         console.log("UpdateProduct", UpdateProduct)
-        res.status(200).json("Update Data")
+        res.status(200).json(UpdateProduct)
     } catch (error) {
         console.log(error)
     }

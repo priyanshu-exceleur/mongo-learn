@@ -9,7 +9,7 @@ require("dotenv").config()
 
 
 var corsOptions = {
-    origin: 'http://localhost:3000',
+    origin: ['http://localhost:3000', 'http://localhost:4200'],
     optionsSuccessStatus: 200
 }
 

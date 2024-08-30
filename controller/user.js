@@ -1,4 +1,6 @@
 const User = require("../model/user")
+const { v4: uuidv4 } = require("uuid")
+const service_auth = require("../services/auth")
 
 const createUser = async (req, res) => {
     const { name, email, password } = req.body
@@ -27,6 +29,9 @@ const loginUser = async (req, res) => {
             msg: "User Login Successfully",
             status: 200
         })
+        const sessionID = uuidv4()
+        service_auth.setUser(sessionID, getUser)
+        res.cookie("uuid", sessionID)
     }
     else {
         res.status(401).json({

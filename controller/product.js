@@ -65,8 +65,9 @@ const deleteAllProduct = async (req, res) => {
 const updateProduct = async (req, res) => {
     try {
         const { title } = req.body
-        const id = req.params.id
-        const UpdateProduct = await Product.findOneAndUpdate({ _id: id }, { title }, { new: true })
+        console.log(title)
+        const _id = req.params.id
+        const UpdateProduct = await Product.findOneAndUpdate({ _id }, { title }, { new: true })
         console.log("UpdateProduct", UpdateProduct)
         res.status(200).json(UpdateProduct)
     } catch (error) {
@@ -80,5 +81,6 @@ module.exports = {
     getProduct,
     deleteProduct,
     deleteAllProduct,
-    updateProduct
+    updateProduct,
+
 };

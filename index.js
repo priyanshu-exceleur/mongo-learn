@@ -3,7 +3,8 @@ const server = express()
 const mongoose = require('mongoose');
 const cors = require('cors')
 const PORT = 8000
-const routes = require("./routes/product")
+const Product_routes = require("./routes/product")
+const User_Routes = require("./routes/user")
 require("dotenv").config()
 
 
@@ -14,7 +15,8 @@ var corsOptions = {
 
 server.use(cors(corsOptions))
 server.use(express.json());
-server.use("/", routes)
+server.use("/", Product_routes)
+server.use("/user", User_Routes)
 
 mongoose.connect(`${process.env.MONGO_URL}`);
 

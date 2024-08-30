@@ -25,13 +25,13 @@ const loginUser = async (req, res) => {
     const { email, password } = req.body
     const getUser = await User.findOne({ email })
     if (getUser && getUser.password === password) {
+        const sessionID = uuidv4()
+        service_auth.setUser(sessionID, getUser)
+        res.cookie("uuid", sessionID)
         res.status(200).json({
             msg: "User Login Successfully",
             status: 200
         })
-        const sessionID = uuidv4()
-        service_auth.setUser(sessionID, getUser)
-        res.cookie("uuid", sessionID)
     }
     else {
         res.status(401).json({
@@ -39,7 +39,6 @@ const loginUser = async (req, res) => {
             status: 401
         })
     }
-
 }
 
 module.exports = {

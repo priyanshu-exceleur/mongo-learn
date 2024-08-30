@@ -2,12 +2,21 @@ const User = require("../model/user")
 
 const createUser = async (req, res) => {
     const { name, email, password } = req.body
-    const Create_User = new User({ name, email, password })
-    const New_user = await Create_User.save()
-    res.status(201).json({
-        msg: "User Created Successfully",
-        status: 201
-    })
+    const existingUser = await User.findOne({ email })
+    if (!existingUser) {
+        const Create_User = new User({ name, email, password })
+        const New_user = await Create_User.save()
+        res.status(201).json({
+            msg: "User Created Successfully",
+            status: 201
+        })
+    }
+    else {
+        res.status(500).json({
+            msg: "User Already Exists",
+            status: 500
+        })
+    }
 }
 
 const loginUser = async (req, res) => {

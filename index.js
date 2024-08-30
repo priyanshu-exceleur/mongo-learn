@@ -9,8 +9,10 @@ require("dotenv").config()
 
 
 var corsOptions = {
-    origin: ['http://localhost:3000', 'http://localhost:4200/contact'],
-    optionsSuccessStatus: 200
+    origin: ['http://localhost:3000', 'http://localhost:4200'],
+    optionsSuccessStatus: 200,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
 }
 
 server.use(cors(corsOptions))
